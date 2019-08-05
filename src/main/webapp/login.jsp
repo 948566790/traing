@@ -18,10 +18,28 @@
     }
 
     .login {
-        position: relative;
-        left: 40%;
-        right: 20%;
-        top: 200px;
+        width: 270px;
+        height: 250px;
+        padding: 13px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+
+        margin-left: -160px;
+
+        margin-top: -200px;
+        background-color: rgba(240, 255, 255, 0.5);
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    #btn {
+        color: white;
+        background-color: blue;
+        border-radius: 6px;
+        border: 0;
+
+
     }
 
     input {
@@ -44,8 +62,8 @@
             </tr>
         </table>
         <br/>
-        <input type="submit" value="登录" style="width: 80px;height: 35px">&emsp;&emsp;&emsp;&emsp;
-        <a href="register.jsp">注册账号</a>
+        <input id="btn" type="submit" value="登录" style="width: 80px;height: 35px;">&emsp;&emsp;&emsp;&emsp;
+        <a id="regt" href="register.jsp">点击注册账号</a>
     </form>
 </div>
 </body>

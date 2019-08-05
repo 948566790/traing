@@ -19,11 +19,28 @@
             text-align: center;
         }
 
+        .message {
+            width: 900px;
+            height: 500px;
+            padding: 20px;
+            position: absolute;
+            left: 20%;
+            top: 40%;
+
+            margin-left: 00px;
+
+            margin-top: -200px;
+            background-color: rgba(240, 255, 255, 0.5);
+            border-radius: 10px;
+            text-align: center;
+        }
+
     </style>
-    <title>Title</title>
+    <title>登陆成功</title>
 </head>
 <body>
 <h1>用户${username}登陆成功</h1>
+<div class="message">
 <table border="5">
     <tr>
         <th>用户名</th>
@@ -56,7 +73,8 @@
     </tr>
 </table>
 <br/>
-<br/>
+    <br/></div>
 <a href="login.jsp">用户注销</a>
+
 </body>
 </html>
