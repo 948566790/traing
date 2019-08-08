@@ -22,8 +22,6 @@ public class MessageServlet extends HttpServlet {
         //获取请求数据
         String message = req.getParameter("message");
         String uname = req.getParameter("uname");
-        System.out.println("msg-->" + message);
-        System.out.println("msgname-->" + uname);
         //处理
         UserServiceImpl us = new UserServiceImpl();
         us.saveMsgService(uname, message);

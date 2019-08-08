@@ -26,7 +26,6 @@ public class DirtyFilter implements Filter {
         String name = req.getParameter("uname");
         //替换侮辱词汇
         for (String dirt : dirtyList) {
-            System.out.println("dirt-->" + dirt);
             msg = msg.replace(dirt, "*");
         }
         //请求转发
