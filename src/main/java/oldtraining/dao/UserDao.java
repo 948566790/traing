@@ -1,10 +1,6 @@
-package com.ucar.training.dao;
+package oldtraining.dao;
 
-import com.ucar.training.domain.User;
-
-import java.util.Date;
-import java.util.Map;
-import java.util.Set;
+import oldtraining.domain.User;
 
 public interface UserDao {
     //用户注册
@@ -21,17 +17,5 @@ public interface UserDao {
 
     //根据用户名返回相应用户对象
     public User getUserInfoDao(String name);
-
-
-    //根据用户名删除用户
-    public void userDelDao(String name);
-
-
-    //修改用户信息
-    public void userChangeDao(User user);
-
-
-    //删除用户留言
-    public void msgDelDao(String name, String date);
 
 }

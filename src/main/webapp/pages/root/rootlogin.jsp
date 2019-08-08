@@ -8,7 +8,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.ucar.training.domain.User" %>
-<%@ page import="com.ucar.training.domain.RootUser" %>
 <html>
 <head>
     <style>
@@ -65,7 +64,7 @@
         <th>个性签名</th>
     </tr>
     <c:forEach var="user" items="${users}">
-        <c:if test="${user.uname!=username}">
+        <c:if test="${user.isRoot!='root'}">
             <tr>
                 <td>${user.uname}</td>
                 <td>${user.age}</td>
@@ -88,7 +87,7 @@
     </tr>
     <tr>
         <td><input type="button" name="alert" value="增加新用户"
-                   onclick="javascrtpt:window.location.href='../user/register.jsp'"></td>
+                   onclick="javascrtpt:window.location.href='../user/register2.jsp'"></td>
     </tr>
 </table>
 <br/>

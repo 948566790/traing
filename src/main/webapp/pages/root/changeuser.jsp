@@ -58,6 +58,13 @@
                 </td>
             </tr>
             <tr>
+                <td>爱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好:</td>
+                <td><input type="checkbox" name="fav" value="run">跑步 &emsp;
+                    <input type="checkbox" name="fav" value="code" checked>写代码 &emsp;
+                    <input type="checkbox" name="fav" value="study">学习 &emsp;
+                    <input type="checkbox" name="fav" value="game">玩游戏<br/><br/></td>
+            </tr>
+            <tr>
                 <td>电话号码</td>
                 <td><input type="tel" name="tel" value="${user.tel}" oninput="value=value.replace(/[^0-9]/g,'')"></td>
             </tr>

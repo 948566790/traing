@@ -1,8 +1,6 @@
-package com.ucar.training.service;
+package oldtraining.service;
 
-import com.ucar.training.domain.User;
-
-import java.util.Set;
+import oldtraining.domain.User;
 
 public interface UserService {
     //注册用户
@@ -22,16 +20,4 @@ public interface UserService {
 
     //保存用户留言
     public void saveMsgService(String name, String msg);
-
-
-    //根据用户名删除用户
-    public void userDelService(String name);
-
-
-    //修改用户信息
-    public void userChangeService(User user);
-
-
-    //删除留言
-    public void msgDelService(String name, String date);
 }

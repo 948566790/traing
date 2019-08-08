@@ -1,9 +1,8 @@
-package com.ucar.training.dao.impl;
+package oldtraining.dao.impl;
 
-import com.ucar.training.dao.RootUserDao;
-import com.ucar.training.dao.UserDao;
-import com.ucar.training.domain.RootUser;
-import com.ucar.training.domain.User;
+import oldtraining.dao.RootUserDao;
+import oldtraining.domain.RootUser;
+import oldtraining.domain.User;
 
 import java.util.HashSet;
 import java.util.Set;

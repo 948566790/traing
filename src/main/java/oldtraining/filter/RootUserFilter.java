@@ -1,7 +1,7 @@
-package com.ucar.training.filter;
+package oldtraining.filter;
 
-import com.ucar.training.domain.RootUser;
-import com.ucar.training.service.impl.RootUserServiceImpl;
+import oldtraining.domain.RootUser;
+import oldtraining.service.impl.RootUserServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

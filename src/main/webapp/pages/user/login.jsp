@@ -50,7 +50,7 @@
 <body>
 <div class="login">
     <h2>用户登录</h2>
-    <form action="/login" method="post">
+    <form action="/login2" method="post">
         <table>
             <tr>
                 <td>用户名</td>
@@ -63,7 +63,7 @@
         </table>
         <br/>
         <input id="btn" type="submit" value="登录" style="width: 80px;height: 35px;">&emsp;&emsp;&emsp;&emsp;
-        <a id="regt" href="/pages/user/register.jsp">点击注册账号</a>
+        <a id="regt" href="/pages/user/register2.jsp">点击注册账号</a>
     </form>
 
     <a href="/pages/uploaddownload/upload.jsp">上传文件</a>

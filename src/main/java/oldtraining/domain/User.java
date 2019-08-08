@@ -1,29 +1,19 @@
-package com.ucar.training.domain;
+package oldtraining.domain;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class User {
     private String uname;
     private String pwd;
     private String age;
-    private String isRoot;
     private String sex;
     private String tel;
     private String email;
     private String[] fav;
     private String sign;
     private Map<String, String> message = new HashMap<String, String>();
-
-    public User(String uname, String pwd, String age, String sex, String tel, String email, String[] fav, String sign) {
-        this.uname = uname;
-        this.pwd = pwd;
-        this.age = age;
-        this.sex = sex;
-        this.tel = tel;
-        this.email = email;
-        this.fav = fav;
-        this.sign = sign;
-    }
 
     public String getUname() {
         return uname;
@@ -47,14 +37,6 @@ public class User {
 
     public void setAge(String age) {
         this.age = age;
-    }
-
-    public String getIsRoot() {
-        return isRoot;
-    }
-
-    public void setIsRoot(String isRoot) {
-        this.isRoot = isRoot;
     }
 
     public String getSex() {
@@ -97,23 +79,33 @@ public class User {
         this.sign = sign;
     }
 
-    public Map<String, String> getMessage() {
-        return message;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "uname='" + uname + '\'' +
                 ", pwd='" + pwd + '\'' +
                 ", age='" + age + '\'' +
-                ", isRoot='" + isRoot + '\'' +
                 ", sex='" + sex + '\'' +
-                ", tel='" + tel + '\'' +
+                ", tel=" + tel +
                 ", email='" + email + '\'' +
                 ", fav=" + Arrays.toString(fav) +
                 ", sign='" + sign + '\'' +
-                ", message=" + message +
+                ", msg='" + message + '\'' +
                 '}';
+    }
+
+    public User(String uname, String pwd, String age, String sex, String tel, String email, String[] fav, String sign) {
+        this.uname = uname;
+        this.pwd = pwd;
+        this.age = age;
+        this.sex = sex;
+        this.tel = tel;
+        this.email = email;
+        this.fav = fav;
+        this.sign = sign;
+    }
+
+    public Map<String, String> getMessage() {
+        return message;
     }
 }

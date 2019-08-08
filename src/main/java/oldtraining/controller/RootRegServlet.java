@@ -1,10 +1,7 @@
-package com.ucar.training.controller;
+package oldtraining.controller;
 
-import com.ucar.training.dao.impl.UserDaoImpl;
-import com.ucar.training.domain.RootUser;
-import com.ucar.training.domain.User;
-import com.ucar.training.service.impl.RootUserServiceImpl;
-import com.ucar.training.service.impl.UserServiceImpl;
+import oldtraining.domain.RootUser;
+import oldtraining.service.impl.RootUserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

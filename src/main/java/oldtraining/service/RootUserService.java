@@ -1,9 +1,7 @@
-package com.ucar.training.service;
+package oldtraining.service;
 
-import com.ucar.training.domain.RootUser;
-import com.ucar.training.domain.User;
-
-import java.util.Set;
+import oldtraining.domain.RootUser;
+import oldtraining.domain.User;
 
 public interface RootUserService {
     //注册超级用户

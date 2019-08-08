@@ -1,4 +1,4 @@
-package com.ucar.training.domain;
+package oldtraining.domain;
 
 public class RootUser {
     private String rname;

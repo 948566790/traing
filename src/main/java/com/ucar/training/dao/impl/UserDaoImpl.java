@@ -53,4 +53,46 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
     }
+
+    //根据用户名删除用户
+    @Override
+    public void userDelDao(String name) {
+        Set<User> uers = UserDaoImpl.getUsers();
+        for (User u : uers) {
+            if (name.equals(u.getUname())) {
+                UserDaoImpl.getUsers().remove(u);
+                return;
+            }
+        }
+    }
+
+    //根据用户名修改用户信息
+    @Override
+    public void userChangeDao(User user) {
+        if (user == null) {
+            return;
+        }
+        for (User u : UserDaoImpl.getUsers()) {
+            if (user.getUname().equals(u.getUname())) {
+                UserDaoImpl.getUsers().remove(u);
+                UserDaoImpl.getUsers().add(user);
+                return;
+            }
+        }
+
+    }
+
+    //删除用户留言
+    @Override
+    public void msgDelDao(String name, String date) {
+        for (User u : UserDaoImpl.getUsers()) {
+            if (name.equals(u.getUname())) {
+                //查看是否存在该留言
+                if (u.getMessage().containsKey(date)) {
+                    //删除该留言
+                    u.getMessage().remove(date);
+                }
+            }
+        }
+    }
 }

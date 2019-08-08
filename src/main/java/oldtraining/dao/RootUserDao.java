@@ -1,9 +1,7 @@
-package com.ucar.training.dao;
+package oldtraining.dao;
 
-import com.ucar.training.domain.RootUser;
-import com.ucar.training.domain.User;
-
-import java.util.Set;
+import oldtraining.domain.RootUser;
+import oldtraining.domain.User;
 
 public interface RootUserDao {
     //超级用户注册

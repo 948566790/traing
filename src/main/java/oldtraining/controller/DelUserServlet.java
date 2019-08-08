@@ -1,6 +1,6 @@
-package com.ucar.training.controller;
+package oldtraining.controller;
 
-import com.ucar.training.service.impl.UserServiceImpl;
+import oldtraining.service.impl.RootUserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +19,8 @@ public class DelUserServlet extends HttpServlet {
         //请求数据
         String uname = req.getParameter("uname");
         //处理
-        UserServiceImpl us = new UserServiceImpl();
-        us.userDelService(uname);
+        RootUserServiceImpl rus = new RootUserServiceImpl();
+        rus.userDelService(uname);
         resp.setHeader("refresh", "0.05;url=pages/root/rootlogin.jsp");
     }
 }

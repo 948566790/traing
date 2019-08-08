@@ -1,6 +1,6 @@
-package com.ucar.training.controller;
+package oldtraining.controller;
 
-import com.ucar.training.service.impl.UserServiceImpl;
+import oldtraining.service.impl.RootUserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,8 +21,8 @@ public class MsgDelServlet extends HttpServlet {
         String date = req.getParameter("date");
         System.out.println("delmsg:uname:" + uname + "   date:" + date);
         //处理
-        UserServiceImpl us = new UserServiceImpl();
-        us.msgDelService(uname, date);
+        RootUserServiceImpl rus = new RootUserServiceImpl();
+        rus.msgDelService(uname, date);
         resp.setHeader("refresh", "0.05;url=pages/root/rootmsg.jsp");
     }
 }

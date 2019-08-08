@@ -1,11 +1,9 @@
-package com.ucar.training.service.impl;
+package oldtraining.service.impl;
 
-import com.ucar.training.dao.impl.RootUserDaoImpl;
-import com.ucar.training.domain.RootUser;
-import com.ucar.training.domain.User;
-import com.ucar.training.service.RootUserService;
-
-import java.util.Set;
+import oldtraining.dao.impl.RootUserDaoImpl;
+import oldtraining.domain.RootUser;
+import oldtraining.domain.User;
+import oldtraining.service.RootUserService;
 
 public class RootUserServiceImpl implements RootUserService {
     RootUserDaoImpl ru = new RootUserDaoImpl();

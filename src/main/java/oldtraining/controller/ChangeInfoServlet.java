@@ -1,7 +1,8 @@
-package com.ucar.training.controller;
+package oldtraining.controller;
 
-import com.ucar.training.domain.User;
-import com.ucar.training.service.impl.UserServiceImpl;
+import oldtraining.domain.User;
+import oldtraining.service.impl.RootUserServiceImpl;
+import oldtraining.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,15 +25,14 @@ public class ChangeInfoServlet extends HttpServlet {
         String tel = req.getParameter("tel");
         String email = req.getParameter("mail");
         String sign = req.getParameter("sign");
-        String[] fav = req.getParameterValues("fav");
         //处理
         UserServiceImpl us = new UserServiceImpl();
         //获取用户对象
         User u = us.getUserInfoService(uname);
-        User user = new User(uname, u.getPwd(), age, sex, tel, email, fav, sign);
-        user.setIsRoot("common");
+        User user = new User(uname, u.getPwd(), age, sex, tel, email, u.getFav(), sign);
         //修改信息
-        us.userChangeService(user);
+        RootUserServiceImpl rus = new RootUserServiceImpl();
+        rus.userChangeService(user);
         resp.sendRedirect("pages/root/rootlogin.jsp");
         return;
     }

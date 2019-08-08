@@ -1,6 +1,7 @@
-package com.ucar.training.controller;
+package oldtraining.controller;
 
-import com.ucar.training.service.impl.UserServiceImpl;
+import oldtraining.domain.User;
+import oldtraining.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,19 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 删除用户留言（仅超级用户可用）
+ * 通过用户名获取用户对象
  */
-@WebServlet(name = "MsgDelServlet", urlPatterns = "/delmsg")
-public class MsgDelServlet extends HttpServlet {
+@WebServlet(name = "GetUserInfoServlet", urlPatterns = "/info")
+public class GetUserInfoServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //获取请求数据
         String uname = req.getParameter("uname");
-        String date = req.getParameter("date");
-        System.out.println("delmsg:uname:" + uname + "   date:" + date);
+
         //处理
         UserServiceImpl us = new UserServiceImpl();
-        us.msgDelService(uname, date);
-        resp.setHeader("refresh", "0.05;url=pages/root/rootmsg.jsp");
+        User u = us.getUserInfoService(uname);
+        if (u != null) {
+            req.setAttribute("user", u);
+            req.getRequestDispatcher("pages/root/changeuser.jsp").forward(req, resp);
+        }
+
     }
 }
