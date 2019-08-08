@@ -75,10 +75,6 @@
             </c:forEach>
         </c:forEach>
         </tr>
-        <tr>
-            <td><input type="button" name="alert" value="发表留言"
-                       onclick="javascrtpt:window.location.href='../user/register.jsp'"></td>
-        </tr>
     </table>
     <br/>
     <br/></div>
