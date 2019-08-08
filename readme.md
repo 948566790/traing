@@ -16,7 +16,7 @@
 
  
 ###4、实现留言板功能
-  
+     
   ####要求
   - 4.1、普通用户登录可以留言；
   - 4.2、管理员登录可以查看所有的留言，并可以删除；
@@ -28,4 +28,4 @@
   - 5.2、分包：dao service controller entity utils ...
   - 5.3、分支以：javaweb_finl_M_xiongmingming 规范；
   - 5.4、剩下的随意发挥，如果发现亮点，可以适当的加分；
- 
+  - 5.5、涉及的页面可能会比较多，建议也要进行分包，比如pages/user pages/messageboard 

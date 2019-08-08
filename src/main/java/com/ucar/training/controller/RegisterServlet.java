@@ -1,6 +1,10 @@
-package com.ucar.training.Servlet;
+package com.ucar.training.controller;
 
+import com.ucar.training.dao.impl.UserDaoImpl;
+import com.ucar.training.domain.RootUser;
 import com.ucar.training.domain.User;
+import com.ucar.training.service.impl.RootUserServiceImpl;
+import com.ucar.training.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,10 +16,11 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-@WebServlet(name = "RegisterServlet", urlPatterns = "/rs")
+@WebServlet(name = "RegisterServlet", urlPatterns = "/rrs")
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //设置编码
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=UTF-8");
         //接受请求数据
@@ -27,23 +32,15 @@ public class RegisterServlet extends HttpServlet {
         String email = req.getParameter("mail");
         String[] fav = req.getParameterValues("fav");
         String sign = req.getParameter("sign");
-
-        //处理请求数据
         User u = new User(uname, pwd, age, sex, tel, email, fav, sign);
-        System.out.println(u);
-        ServletContext sc = this.getServletContext();
-        Set<User> users = (Set<User>) sc.getAttribute("users");
-        if (users == null) {
-            users = new HashSet<User>();
-        } else {
-            for (User v : users) {
-                System.out.println(v);
-            }
-        }
-        users.add(u);
-        sc.setAttribute("users", users);
-        resp.getWriter().write("<h3>注册成功，即将跳转到注册页面！！!</h3>");
+
+        //创建业务层对象,处理请求数据
+        UserServiceImpl us = new UserServiceImpl();
+        us.userRegService(u);
+        this.getServletContext().setAttribute("users", UserDaoImpl.getUsers());
+
         //定时刷新，跳转页面
-        resp.setHeader("refresh", "3;url=register.jsp");
+        resp.getWriter().write("<h3>注册成功，即将跳转到注册页面！！!</h3>");
+        resp.setHeader("refresh", "1;url=pages/user/register.jsp");
     }
 }

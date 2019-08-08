@@ -1,4 +1,4 @@
-package com.ucar.training.Servlet;
+package com.ucar.training.controller;
 
 import com.ucar.training.domain.User;
 
@@ -11,9 +11,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Set;
 
-@WebServlet(name = "CheckUnameServlet", urlPatterns = "/checkname")
-public class CheckUnameServlet extends HttpServlet {
+/**
+ * Ajax用来检查是否存在重名
+ */
+@WebServlet(name = "AjaxServlet", urlPatterns = "/checkname")
+public class AjaxServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //设置编码
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
         //获取请求数据
@@ -28,7 +32,10 @@ public class CheckUnameServlet extends HttpServlet {
                     break;
                 }
             }
+        } else {
+            out.print(false);
         }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

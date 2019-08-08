@@ -1,6 +1,6 @@
 package com.ucar.training.domain;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class User {
     private String uname;
@@ -11,6 +11,7 @@ public class User {
     private String email;
     private String[] fav;
     private String sign;
+    private Map<String, String> message = new HashMap<String, String>();
 
     public String getUname() {
         return uname;
@@ -87,6 +88,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", fav=" + Arrays.toString(fav) +
                 ", sign='" + sign + '\'' +
+                ", msg='" + message + '\'' +
                 '}';
     }
 
@@ -101,4 +103,7 @@ public class User {
         this.sign = sign;
     }
 
+    public Map<String, String> getMessage() {
+        return message;
+    }
 }
