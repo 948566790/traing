@@ -3,6 +3,7 @@ package com.ucar.training.dao;
 import com.ucar.training.domain.User;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -33,5 +34,9 @@ public interface UserDao {
 
     //删除用户留言
     public void msgDelDao(String name, String date);
+
+
+    //返回所有用户信息
+    public List<User> getUsersDao();
 
 }

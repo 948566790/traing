@@ -64,7 +64,7 @@
         <th>个性签名</th>
     </tr>
     <c:forEach var="user" items="${users}">
-        <c:if test="${user.isRoot!='root'}">
+        <c:if test="${user.isRoot!='1'}">
             <tr>
                 <td>${user.uname}</td>
                 <td>${user.age}</td>

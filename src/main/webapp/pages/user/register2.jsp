@@ -146,8 +146,8 @@
         </tr>
         <tr>
             <td>权&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;限：</td>
-            <td><input type="radio" name="isroot" value="common" checked>普通用户 &emsp;
-                <input type="radio" name="isroot" value="root">管理员<br/><br/></td>
+            <td><input type="radio" name="isroot" value="2" checked>普通用户 &emsp;
+                <input type="radio" name="isroot" value="1">管理员<br/><br/></td>
         </tr>
         <tr>
             <td>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：</td>

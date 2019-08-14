@@ -53,16 +53,20 @@
             </tr>
             <tr>
                 <td>性别</td>
-                <td><input type="radio" name="sex" value="man" checked>男 &emsp;
-                    <input type="radio" name="sex" value="woman">女
+                <td><input type="radio" name="sex" value="man" ${user.sex eq "man" ?'checked':''}>男 &emsp;
+                    <input type="radio" name="sex" value="woman" ${user.sex eq "woman" ?'checked':''}>女
                 </td>
             </tr>
             <tr>
                 <td>爱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好:</td>
-                <td><input type="checkbox" name="fav" value="run">跑步 &emsp;
-                    <input type="checkbox" name="fav" value="code" checked>写代码 &emsp;
-                    <input type="checkbox" name="fav" value="study">学习 &emsp;
-                    <input type="checkbox" name="fav" value="game">玩游戏<br/><br/></td>
+                <td><input type="checkbox" name="fav" value="run" ${user.fav.contains("run") eq true?'checked':''}>跑步
+                    &emsp;
+                    <input type="checkbox" name="fav" value="code" ${user.fav.contains("code") eq true?"checked":''}>写代码
+                    &emsp;
+                    <input type="checkbox" name="fav" value="study" ${user.fav.contains("study") eq true?"checked":''}>学习
+                    &emsp;
+                    <input type="checkbox" name="fav" value="game" ${user.fav.contains("game") eq true?'checked':''}>玩游戏<br/><br/>
+                </td>
             </tr>
             <tr>
                 <td>电话号码</td>

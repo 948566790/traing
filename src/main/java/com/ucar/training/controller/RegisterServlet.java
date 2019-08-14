@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 
 @WebServlet(name = "RegisterServlet", urlPatterns = "/rs2")
 public class RegisterServlet extends HttpServlet {
@@ -26,16 +27,18 @@ public class RegisterServlet extends HttpServlet {
         String sex = req.getParameter("sex");
         String tel = req.getParameter("tel");
         String email = req.getParameter("mail");
-        String[] fav = req.getParameterValues("fav");
+        String[] favs = req.getParameterValues("fav");
         String sign = req.getParameter("sign");
-        User u = new User(uname, pwd, age, sex, tel, email, fav, sign);
-        //设置权限
-        u.setIsRoot(isRoot);
+        //数组转换
+        String fav = Arrays.toString(favs);
+        User u = new User(uname, pwd, age, isRoot, sex, tel, email, fav, sign);
+
 
         //创建业务层对象,处理请求数据
         UserServiceImpl us = new UserServiceImpl();
         us.userRegService(u);
-        this.getServletContext().setAttribute("users", UserDaoImpl.getUsers());
+
+        this.getServletContext().setAttribute("users", us.getUSersService());
 
         //定时刷新，跳转页面
         resp.getWriter().write("<h3>注册成功，即将跳转到注册页面！！!</h3>");

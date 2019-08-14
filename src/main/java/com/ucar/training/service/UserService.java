@@ -2,6 +2,7 @@ package com.ucar.training.service;
 
 import com.ucar.training.domain.User;
 
+import java.util.List;
 import java.util.Set;
 
 public interface UserService {
@@ -34,4 +35,8 @@ public interface UserService {
 
     //删除留言
     public void msgDelService(String name, String date);
+
+
+    //获取所有用户
+    public List<User> getUSersService();
 }

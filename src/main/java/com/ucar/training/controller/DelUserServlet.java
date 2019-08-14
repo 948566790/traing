@@ -21,6 +21,7 @@ public class DelUserServlet extends HttpServlet {
         //处理
         UserServiceImpl us = new UserServiceImpl();
         us.userDelService(uname);
+        req.getSession().setAttribute("users", us.getUSersService());
         resp.setHeader("refresh", "0.05;url=pages/root/rootlogin.jsp");
     }
 }

@@ -6,24 +6,27 @@ public class User {
     private String uname;
     private String pwd;
     private String age;
-    private String isRoot;
+    private String isRoot;  //1表示超级用户，2表示普通用户
     private String sex;
     private String tel;
     private String email;
-    private String[] fav;
+    private String fav;
     private String sign;
     private Map<String, String> message = new HashMap<String, String>();
 
-    public User(String uname, String pwd, String age, String sex, String tel, String email, String[] fav, String sign) {
+
+    public User(String uname, String pwd, String age, String isRoot, String sex, String tel, String email, String fav, String sign) {
         this.uname = uname;
         this.pwd = pwd;
         this.age = age;
+        this.isRoot = isRoot;
         this.sex = sex;
         this.tel = tel;
         this.email = email;
         this.fav = fav;
         this.sign = sign;
     }
+
 
     public String getUname() {
         return uname;
@@ -81,11 +84,11 @@ public class User {
         this.email = email;
     }
 
-    public String[] getFav() {
+    public String getFav() {
         return fav;
     }
 
-    public void setFav(String[] fav) {
+    public void setFav(String fav) {
         this.fav = fav;
     }
 
@@ -111,7 +114,7 @@ public class User {
                 ", sex='" + sex + '\'' +
                 ", tel='" + tel + '\'' +
                 ", email='" + email + '\'' +
-                ", fav=" + Arrays.toString(fav) +
+                ", fav=" + fav +
                 ", sign='" + sign + '\'' +
                 ", message=" + message +
                 '}';

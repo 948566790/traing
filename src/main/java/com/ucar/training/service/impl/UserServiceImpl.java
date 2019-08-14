@@ -8,6 +8,7 @@ import com.ucar.training.service.UserService;
 
 
 import java.util.Date;
+import java.util.List;
 
 public class UserServiceImpl implements UserService {
     UserDaoImpl ud = new UserDaoImpl();
@@ -70,5 +71,12 @@ public class UserServiceImpl implements UserService {
     public void msgDelService(String name, String date) {
         ud.msgDelDao(name, date);
         return;
+    }
+
+    //获取所有用户
+
+    @Override
+    public List<User> getUSersService() {
+        return ud.getUsersDao();
     }
 }

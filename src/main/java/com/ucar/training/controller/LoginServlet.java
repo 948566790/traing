@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 登陆
@@ -30,14 +31,15 @@ public class LoginServlet extends HttpServlet {
         UserServiceImpl us = new UserServiceImpl();
         User u = us.userCheckPwdService(uname, pwd);
         if (u != null) {//登陆成功
-            if (u.getIsRoot().equals("common")) {//普通用户登录
-                this.getServletContext().setAttribute("user", u);
-                req.setAttribute("username", u.getUname());
+            if (u.getIsRoot().equals("2")) {//普通用户登录
+                req.getSession().setAttribute("user", u);
+                req.getSession().setAttribute("username", u.getUname());
                 resp.sendRedirect("pages/user/userlogin.jsp");
                 return;
             } else {//超级用户登陆
-                this.getServletContext().setAttribute("user", u);
-                req.setAttribute("username", u.getUname());
+                List<User> users = us.getUSersService();
+                req.getSession().setAttribute("rootname", u.getUname());
+                req.getSession().setAttribute("users", users);
                 resp.sendRedirect("pages/root/rootlogin.jsp");
                 return;
             }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * 修改用户信息（仅超级用户可用）
@@ -24,15 +25,24 @@ public class ChangeInfoServlet extends HttpServlet {
         String tel = req.getParameter("tel");
         String email = req.getParameter("mail");
         String sign = req.getParameter("sign");
-        String[] fav = req.getParameterValues("fav");
+        String[] favs = req.getParameterValues("fav");
         //处理
         UserServiceImpl us = new UserServiceImpl();
+        String fav = Arrays.toString(favs);
         //获取用户对象
         User u = us.getUserInfoService(uname);
-        User user = new User(uname, u.getPwd(), age, sex, tel, email, fav, sign);
-        user.setIsRoot("common");
+        if (u != null) {
+            u.setAge(age);
+            u.setSex(sex);
+            u.setTel(tel);
+            u.setEmail(email);
+            u.setFav(fav);
+            u.setSign(sign);
+        }
+        System.out.println("save u -->" + u);
         //修改信息
-        us.userChangeService(user);
+        us.userChangeService(u);
+        req.getSession().setAttribute("users", us.getUSersService());
         resp.sendRedirect("pages/root/rootlogin.jsp");
         return;
     }
