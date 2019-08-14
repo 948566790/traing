@@ -43,14 +43,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    //保存留言
-    @Override
-    public void saveMsgService(String name, String msg) {
-        User user = getUserInfoService(name);
-        user.getMessage().put(LoginServlet.formatDate(new Date()), msg);
-        userChangeService(user);
-        return;
-    }
 
     //根据用户名删除用户
     @Override
@@ -66,15 +58,8 @@ public class UserServiceImpl implements UserService {
         return;
     }
 
-    //删除留言
-    @Override
-    public void msgDelService(String name, String date) {
-        ud.msgDelDao(name, date);
-        return;
-    }
 
     //获取所有用户
-
     @Override
     public List<User> getUSersService() {
         return ud.getUsersDao();

@@ -21,9 +21,6 @@ public interface UserService {
     //根据用户名返回相应用户对象
     public User getUserInfoService(String name);
 
-    //保存用户留言
-    public void saveMsgService(String name, String msg);
-
 
     //根据用户名删除用户
     public void userDelService(String name);
@@ -31,10 +28,6 @@ public interface UserService {
 
     //修改用户信息
     public void userChangeService(User user);
-
-
-    //删除留言
-    public void msgDelService(String name, String date);
 
 
     //获取所有用户

@@ -1,6 +1,7 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.domain.User;
+import com.ucar.training.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -24,7 +26,8 @@ public class AjaxServlet extends HttpServlet {
         String uname = request.getParameter("userName");
         //处理
         PrintWriter out = response.getWriter();
-        Set<User> users = (Set<User>) this.getServletContext().getAttribute("users");
+        UserServiceImpl us = new UserServiceImpl();
+        List<User> users = us.getUSersService();
         if (users != null) {
             for (User u : users) {
                 if (u.getUname().equals(uname)) {

@@ -28,7 +28,7 @@ public class ChangeInfoServlet extends HttpServlet {
         String[] favs = req.getParameterValues("fav");
         //处理
         UserServiceImpl us = new UserServiceImpl();
-        String fav = Arrays.toString(favs);
+        String fav = Arrays.toString(favs).replaceAll("[\\[\\]]", "");
         //获取用户对象
         User u = us.getUserInfoService(uname);
         if (u != null) {

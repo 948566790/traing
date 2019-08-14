@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.ucar.training.domain.User" %>
+<%@ page import="com.ucar.training.domain.Message" %>
 <style>
     body {
         background: url("../../img/bg1.jpg");
@@ -157,10 +158,10 @@
     <div class="msghis" style="overflow:scroll">
         <h1>留言记录</h1>
         <table>
-            <c:forEach var="m" items="${user.message}">
+            <c:forEach var="m" items="${umessages}">
                 <tr>
-                    <td width="100px">${m.key}</td>
-                    <td>${m.value}</td>
+                    <td width="100px">${m.createTime}</td>
+                    <td>${m.msg}</td>
                 </tr>
                 <tr><p></p></tr>
                 <tr><p></p></tr>

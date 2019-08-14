@@ -1,5 +1,6 @@
 package com.ucar.training.controller;
 
+import com.ucar.training.service.impl.MessageServiceImpl;
 import com.ucar.training.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
@@ -19,10 +20,10 @@ public class MsgDelServlet extends HttpServlet {
         //获取请求数据
         String uname = req.getParameter("uname");
         String date = req.getParameter("date");
-        System.out.println("delmsg:uname:" + uname + "   date:" + date);
         //处理
-        UserServiceImpl us = new UserServiceImpl();
-        us.msgDelService(uname, date);
+        MessageServiceImpl ms = new MessageServiceImpl();
+        ms.msgDelService(uname, date);
+        req.getSession().setAttribute("allmessages", ms.getAllMsgService());
         resp.setHeader("refresh", "0.05;url=pages/root/rootmsg.jsp");
     }
 }

@@ -17,7 +17,7 @@ public class UserDaoImpl implements UserDao {
         Connection conn = JDBCUtils.getConnection();
         PreparedStatement ps = null;
         try {
-            ps = conn.prepareStatement("insert into USERS values(?,?,?,?,?,?,?,?,?)");
+            ps = conn.prepareStatement("insert into USERS(uname,pwd,age,isRoot,sex,tel,email,fav,sign) values(?,?,?,?,?,?,?,?,?)");
             ps.setObject(1, user.getUname());
             ps.setObject(2, user.getPwd());
             ps.setObject(3, user.getAge());
@@ -135,22 +135,6 @@ public class UserDaoImpl implements UserDao {
         } finally {
             JDBCUtils.close(conn, ps);
         }
-    }
-
-
-
-    //删除用户留言
-    @Override
-    public void msgDelDao(String name, String date) {
-        /*for (User u : UserDaoImpl.getUsers()) {
-            if (name.equals(u.getUname())) {
-                //查看是否存在该留言
-                if (u.getMessage().containsKey(date)) {
-                    //删除该留言
-                    u.getMessage().remove(date);
-                }
-            }
-        }*/
     }
 
 

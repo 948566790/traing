@@ -12,8 +12,10 @@ public class User {
     private String email;
     private String fav;
     private String sign;
-    private Map<String, String> message = new HashMap<String, String>();
+    private List<Message> message;
 
+    public User() {
+    }
 
     public User(String uname, String pwd, String age, String isRoot, String sex, String tel, String email, String fav, String sign) {
         this.uname = uname;
@@ -100,8 +102,12 @@ public class User {
         this.sign = sign;
     }
 
-    public Map<String, String> getMessage() {
+    public List<Message> getMessage() {
         return message;
+    }
+
+    public void setMessage(List<Message> message) {
+        this.message = message;
     }
 
     @Override

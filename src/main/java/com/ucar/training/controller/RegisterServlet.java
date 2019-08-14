@@ -30,15 +30,14 @@ public class RegisterServlet extends HttpServlet {
         String[] favs = req.getParameterValues("fav");
         String sign = req.getParameter("sign");
         //数组转换
-        String fav = Arrays.toString(favs);
+        String fav = Arrays.toString(favs).replaceAll("[\\[\\]]", "");
         User u = new User(uname, pwd, age, isRoot, sex, tel, email, fav, sign);
 
 
         //创建业务层对象,处理请求数据
         UserServiceImpl us = new UserServiceImpl();
         us.userRegService(u);
-
-        this.getServletContext().setAttribute("users", us.getUSersService());
+        req.getSession().setAttribute("users", us.getUSersService());
 
         //定时刷新，跳转页面
         resp.getWriter().write("<h3>注册成功，即将跳转到注册页面！！!</h3>");

@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.ucar.training.domain.User" %>
+<%@ page import="com.ucar.training.domain.Message" %>
 
 <html>
 <head>
@@ -62,19 +63,16 @@
             <th>留言时间</th>
 
         </tr>
-        <c:forEach var="user" items="${users}">
-            <c:forEach var="m" items="${user.message}">
-                <tr>
-                    <td>${user.uname}</td>
-                    <td>${m.value}</td>
-                    <td>${m.key}</td>
-                    <td><input type="button" name="del" value="删除此留言"
-                               onclick="javascrtpt:window.location.href='/delmsg?uname=${user.uname}&date=${m.key}'">
-                    </td>
-                </tr>
-            </c:forEach>
+        <c:forEach var="m" items="${allmessages}">
+            <tr>
+                <td>${m.uname}</td>
+                <td>${m.msg}</td>
+                <td>${m.createTime}</td>
+                <td><input type="button" name="del" value="删除此留言"
+                           onclick="javascrtpt:window.location.href='/delmsg?uname=${m.uname}&date=${m.createTime}'">
+                </td>
+            </tr>
         </c:forEach>
-        </tr>
     </table>
     <br/>
     <br/></div>

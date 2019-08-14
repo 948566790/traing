@@ -1,6 +1,7 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.domain.User;
+import com.ucar.training.service.impl.MessageServiceImpl;
 import com.ucar.training.service.impl.UserServiceImpl;
 
 
@@ -23,12 +24,12 @@ public class MessageServlet extends HttpServlet {
         String message = req.getParameter("message");
         String uname = req.getParameter("uname");
         //处理
-        UserServiceImpl us = new UserServiceImpl();
-        us.saveMsgService(uname, message);
+        MessageServiceImpl ms = new MessageServiceImpl();
+        ms.saveMsgService(uname, message);
 
-        //获取当前对象,保存
-        User u = us.getUserInfoService(uname);
-        this.getServletContext().setAttribute("user", u);
+        //获取当前用户所有留言
+        req.getSession().setAttribute("umessages", ms.getUserMsgService(uname));
+        req.getSession().setAttribute("allmessages", ms.getAllMsgService());
 
         //刷新
         resp.setHeader("refresh", "0.05;url=pages/user/userlogin.jsp");

@@ -32,10 +32,6 @@ public interface UserDao {
     public void userChangeDao(User user);
 
 
-    //删除用户留言
-    public void msgDelDao(String name, String date);
-
-
     //返回所有用户信息
     public List<User> getUsersDao();
 
