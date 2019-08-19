@@ -1,7 +1,10 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.domain.User;
+import com.ucar.training.service.UserService;
 import com.ucar.training.service.impl.UserServiceImpl;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,13 +18,20 @@ import java.io.IOException;
  */
 @WebServlet(name = "GetUserInfoServlet", urlPatterns = "/info")
 public class GetUserInfoServlet extends HttpServlet {
+    private UserService userService;
+
+    @Override
+    public void init() throws ServletException {
+        WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
+        userService = context.getBean("userService", UserService.class);
+    }
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String uname = req.getParameter("uname");
 
         //处理
-        UserServiceImpl us = new UserServiceImpl();
-        User u = us.getUserInfoService(uname);
+        User u = userService.getUserInfoService(uname);
         if (u != null) {
             req.setAttribute("user", u);
             req.getRequestDispatcher("pages/root/changeuser.jsp").forward(req, resp);

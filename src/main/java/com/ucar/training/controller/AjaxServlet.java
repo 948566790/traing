@@ -1,7 +1,10 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.domain.User;
+import com.ucar.training.service.UserService;
 import com.ucar.training.service.impl.UserServiceImpl;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +21,15 @@ import java.util.Set;
  */
 @WebServlet(name = "AjaxServlet", urlPatterns = "/checkname")
 public class AjaxServlet extends HttpServlet {
+    private UserService userService;
+
+
+    @Override
+    public void init() throws ServletException {
+        WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
+        userService = context.getBean("userService", UserService.class);
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置编码
         request.setCharacterEncoding("utf-8");
@@ -26,8 +38,7 @@ public class AjaxServlet extends HttpServlet {
         String uname = request.getParameter("userName");
         //处理
         PrintWriter out = response.getWriter();
-        UserServiceImpl us = new UserServiceImpl();
-        List<User> users = us.getUSersService();
+        List<User> users = userService.getUSersService();
         if (users != null) {
             for (User u : users) {
                 if (u.getUname().equals(uname)) {

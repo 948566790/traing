@@ -1,8 +1,11 @@
 package com.ucar.training.controller;
 
-import com.ucar.training.dao.impl.UserDaoImpl;
+
 import com.ucar.training.domain.User;
+import com.ucar.training.service.UserService;
 import com.ucar.training.service.impl.UserServiceImpl;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +17,14 @@ import java.util.Arrays;
 
 @WebServlet(name = "RegisterServlet", urlPatterns = "/rs2")
 public class RegisterServlet extends HttpServlet {
+    private UserService userService;
+
+    @Override
+    public void init() throws ServletException {
+        WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
+        userService = context.getBean("userService", UserService.class);
+    }
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //设置编码
@@ -35,9 +46,8 @@ public class RegisterServlet extends HttpServlet {
 
 
         //创建业务层对象,处理请求数据
-        UserServiceImpl us = new UserServiceImpl();
-        us.userRegService(u);
-        req.getSession().setAttribute("users", us.getUSersService());
+        userService.userRegService(u);
+        req.getSession().setAttribute("users", userService.getUSersService());
 
         //定时刷新，跳转页面
         resp.getWriter().write("<h3>注册成功，即将跳转到注册页面！！!</h3>");

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ucar.training.dao.MessageMapper">
+    <insert id="saveMsg">
+        insert into message(uname, msg)
+        values (#{arg0}, #{arg1})
+    </insert>
+    <delete id="msgDel">
+        delete
+        from message
+        where uname = #{arg0}
+          and createTime = #{arg1}
+    </delete>
+    <select id="getAllMsg" resultType="com.ucar.training.domain.Message">
+        select *
+        from message;
+    </select>
+    <select id="getUserMsg" resultType="com.ucar.training.domain.Message">
+        select *
+        from message
+        where uname = #{arg0};
+    </select>
+</mapper>

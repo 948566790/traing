@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ucar.training.dao.UserMapper">
+    <insert id="userReg">
+        insert into users(uname, pwd, age, isRoot, sex, tel, email, fav, sign)
+        values (#{uname}, #{pwd}, #{age}, #{isRoot}, #{sex}, #{tel}, #{email}, #{fav}, #{sign})
+    </insert>
+    <select id="userCheckPwd" resultType="com.ucar.training.domain.User">
+        select *
+        from users
+        where uname = #{arg0}
+          and pwd = #{arg1};
+    </select>
+    <select id="getUserInfo" resultType="com.ucar.training.domain.User">
+        select *
+        from users
+        where uname = #{arg0}
+    </select>
+    <delete id="userDel">
+        delete
+        from users
+        where uname = #{arg0}
+    </delete>
+    <update id="userChange" parameterType="com.ucar.training.domain.User">
+        update users
+        set age=#{age},
+            sex=#{sex},
+            tel=#{tel},
+            email=#{email},
+            fav=#{fav},
+            sign=#{sign}
+        where uname = #{uname}
+    </update>
+    <select id="getUsers" resultType="com.ucar.training.domain.User">
+        select *
+        from users
+    </select>
+</mapper>

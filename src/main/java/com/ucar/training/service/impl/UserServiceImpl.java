@@ -1,23 +1,30 @@
 package com.ucar.training.service.impl;
 
 
-import com.ucar.training.controller.LoginServlet;
-import com.ucar.training.dao.impl.UserDaoImpl;
 import com.ucar.training.domain.User;
+import com.ucar.training.dao.UserMapper;
 import com.ucar.training.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
-import java.util.Date;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    UserDaoImpl ud = new UserDaoImpl();
+    //UserDaoImpl ud = new UserDaoImpl();
+    private UserMapper userMapper;
 
+    public UserMapper getUserMapper() {
+        return userMapper;
+    }
+
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
 
     //用户注册
     @Override
     public int userRegService(User user) {
-        ud.userRegDao(user);
+        userMapper.userReg(user);
         return 1;
     }
 
@@ -25,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User userCheckPwdService(String name, String pwd) {
 
-        return ud.userCheckPwdDao(name, pwd);
+        return userMapper.userCheckPwd(name, pwd);
     }
 
 
@@ -39,7 +46,7 @@ public class UserServiceImpl implements UserService {
     //根据用户名返回相应用户对象
     @Override
     public User getUserInfoService(String name) {
-        return ud.getUserInfoDao(name);
+        return userMapper.getUserInfo(name);
     }
 
 
@@ -47,14 +54,14 @@ public class UserServiceImpl implements UserService {
     //根据用户名删除用户
     @Override
     public void userDelService(String name) {
-        ud.userDelDao(name);
+        userMapper.userDel(name);
         return;
     }
 
     //修改用户信息
     @Override
     public void userChangeService(User user) {
-        ud.userChangeDao(user);
+        userMapper.userChange(user);
         return;
     }
 
@@ -62,6 +69,6 @@ public class UserServiceImpl implements UserService {
     //获取所有用户
     @Override
     public List<User> getUSersService() {
-        return ud.getUsersDao();
+        return userMapper.getUsers();
     }
 }

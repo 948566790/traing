@@ -4,6 +4,7 @@ public class Message {
     private String uname;
     private String msg;
     private String createTime;
+    private String updateTime;
 
     public Message() {
     }
@@ -41,6 +42,14 @@ public class Message {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
     }
 
     @Override

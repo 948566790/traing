@@ -1,33 +1,36 @@
 package com.ucar.training.service.impl;
 
-import com.ucar.training.dao.MessageDao;
-import com.ucar.training.dao.impl.MessageDaoImpl;
+import com.ucar.training.dao.MessageMapper;
 import com.ucar.training.domain.Message;
 import com.ucar.training.service.MessageService;
 
 import java.util.List;
 
 public class MessageServiceImpl implements MessageService {
-    MessageDao md = new MessageDaoImpl();
-
+    //MessageDao md = new MessageDaoImpl();
+    MessageMapper messageMapper;
     @Override
     public void saveMsgService(String name, String msg) {
-        md.saveMsgDao(name, msg);
+        messageMapper.saveMsg(name, msg);
     }
 
     @Override
     public void msgDelService(String name, String date) {
-        md.msgDelDao(name, date);
+        messageMapper.msgDel(name, date);
     }
 
     @Override
     public List<Message> getAllMsgService() {
 
-        return md.getAllMsgDao();
+        return messageMapper.getAllMsg();
     }
 
     @Override
     public List<Message> getUserMsgService(String name) {
-        return md.getUserMsgDao(name);
+        return messageMapper.getUserMsg(name);
+    }
+
+    public void setMessageMapper(MessageMapper messageMapper) {
+        this.messageMapper = messageMapper;
     }
 }
