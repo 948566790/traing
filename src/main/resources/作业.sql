@@ -72,3 +72,5 @@ from t_student a,
      t_student b
 where a.student_name = b.student_name
   and a.student_id != b.student_id;
+
+

@@ -6,7 +6,7 @@ public class User {
     private String uname;
     private String pwd;
     private String age;
-    private String isRoot;  //1表示超级用户，2表示普通用户
+    private String roleId;
     private String sex;
     private String tel;
     private String email;
@@ -17,11 +17,11 @@ public class User {
     public User() {
     }
 
-    public User(String uname, String pwd, String age, String isRoot, String sex, String tel, String email, String fav, String sign) {
+    public User(String uname, String pwd, String age, String roleId, String sex, String tel, String email, String fav, String sign) {
         this.uname = uname;
         this.pwd = pwd;
         this.age = age;
-        this.isRoot = isRoot;
+        this.roleId = roleId;
         this.sex = sex;
         this.tel = tel;
         this.email = email;
@@ -54,12 +54,12 @@ public class User {
         this.age = age;
     }
 
-    public String getIsRoot() {
-        return isRoot;
+    public String getRoleId() {
+        return roleId;
     }
 
-    public void setIsRoot(String isRoot) {
-        this.isRoot = isRoot;
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 
     public String getSex() {
@@ -116,7 +116,7 @@ public class User {
                 "uname='" + uname + '\'' +
                 ", pwd='" + pwd + '\'' +
                 ", age='" + age + '\'' +
-                ", isRoot='" + isRoot + '\'' +
+                ", roleId='" + roleId + '\'' +
                 ", sex='" + sex + '\'' +
                 ", tel='" + tel + '\'' +
                 ", email='" + email + '\'' +

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -125,10 +126,10 @@
 </head>
 <body>
 <h1>用户注册</h1>
-<a href="login.jsp">返回登陆界面</a>
+<a href="pages/user/login.jsp">返回登陆界面</a>
 <br/>
 <br/>
-<form name="register_form" action="../../rs2" method="post" onsubmit="return submitit()">
+<form name="register_form" action="/rs2" method="post" onsubmit="return submitit()">
     <table>
         <tr>
             <td>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</td>
@@ -146,8 +147,11 @@
         </tr>
         <tr>
             <td>权&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;限：</td>
-            <td><input type="radio" name="isroot" value="2" checked>普通用户 &emsp;
-                <input type="radio" name="isroot" value="1">管理员<br/><br/></td>
+            <td><select name="roleId">
+                <c:forEach var="role" items="${roles}">
+                    <option value="${role.roleId}">${role.roleName}</option>
+                </c:forEach>
+            </select><br/><br/></td>
         </tr>
         <tr>
             <td>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：</td>
@@ -178,7 +182,6 @@
             <td><textarea name="sign" rows="5" cols="50" required>这个人有点懒。。</textarea> <br/><br/></td>
         </tr>
     </table>
-
     <br/>
     <input type="submit" name="register" value="注册" style="width: 100px;height: 50px">&emsp;&emsp;
     <input type="reset" name="reset" value="重置" style="width: 100px;height: 50px">

@@ -34,6 +34,6 @@ public class MsgDelServlet extends HttpServlet {
         //处理
         messageService.msgDelService(uname, date);
         req.getSession().setAttribute("allmessages", messageService.getAllMsgService());
-        resp.setHeader("refresh", "0.05;url=pages/root/rootmsg.jsp");
+        resp.setHeader("refresh", "0.05;url=pages/user/managemsg.jsp");
     }
 }

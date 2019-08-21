@@ -4,6 +4,7 @@ package com.ucar.training.controller;
 import com.ucar.training.domain.User;
 import com.ucar.training.service.UserService;
 import com.ucar.training.service.impl.UserServiceImpl;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -34,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
         String uname = req.getParameter("uname");
         String pwd = req.getParameter("pwd");
         String age = req.getParameter("age");
-        String isRoot = req.getParameter("isroot");
+        String roleId = req.getParameter("roleId");
         String sex = req.getParameter("sex");
         String tel = req.getParameter("tel");
         String email = req.getParameter("mail");
@@ -42,8 +43,7 @@ public class RegisterServlet extends HttpServlet {
         String sign = req.getParameter("sign");
         //数组转换
         String fav = Arrays.toString(favs).replaceAll("[\\[\\]]", "");
-        User u = new User(uname, pwd, age, isRoot, sex, tel, email, fav, sign);
-
+        User u = new User(uname, pwd, age, roleId, sex, tel, email, fav, sign);
 
         //创建业务层对象,处理请求数据
         userService.userRegService(u);
@@ -51,6 +51,6 @@ public class RegisterServlet extends HttpServlet {
 
         //定时刷新，跳转页面
         resp.getWriter().write("<h3>注册成功，即将跳转到注册页面！！!</h3>");
-        resp.setHeader("refresh", "1;url=pages/user/register2.jsp");
+        resp.setHeader("refresh", "1;url=getroles");
     }
 }

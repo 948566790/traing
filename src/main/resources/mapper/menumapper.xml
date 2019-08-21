@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucar.training.dao.MenuMapper">
+    <resultMap id="menu" type="com.ucar.training.domain.Menu">
+        <id property="menuId" column="menu_id"/>
+        <result property="menuName" column="menu_name"/>
+        <result property="url" column="url"/>
+    </resultMap>
+    <select id="selMenuById" resultMap="menu">
+        select m.menu_id, menu_name, url
+        from role_menu rm
+                 inner join menu m
+                            on rm.menu_id = m.menu_id
+        where role_id = #{arg0};
+    </select>
+
+    <select id="getMenus" resultMap="menu">
+        select *
+        from menu
+    </select>
+
+    <select id="getMenuById" resultMap="menu">
+        select *
+        from menu
+        where menu_id = #{arg0}
+    </select>
+
+    <delete id="delMenu">
+        delete
+        from menu
+        where menu_id = #{arg0}
+    </delete>
+
+    <delete id="delMenuRole">
+        delete
+        from role_menu
+        where menu_id = #{arg0}
+    </delete>
+
+    <insert id="addMenu">
+        insert into menu(menu_name, url)
+        VALUES (#{menuName}, #{url})
+    </insert>
+
+    <update id="changeMenu">
+        update menu
+        set menu_name=#{menuName},
+            url=#{url}
+        where menu_id = #{menuId}
+    </update>
+</mapper>

@@ -170,7 +170,7 @@
       </div>
     </div>
   </div>
-
+    <a href="pages/user/login.jsp"></a>
 </div>
 
 
@@ -194,7 +194,6 @@
       }
     ]
   });
-
 
 </script>
 </body>

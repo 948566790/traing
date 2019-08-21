@@ -1,7 +1,9 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.domain.User;
+import com.ucar.training.service.MenuService;
 import com.ucar.training.service.MessageService;
+import com.ucar.training.service.RoleService;
 import com.ucar.training.service.UserService;
 import com.ucar.training.service.impl.MessageServiceImpl;
 import com.ucar.training.service.impl.UserServiceImpl;
@@ -26,12 +28,16 @@ import java.util.List;
 public class LoginServlet extends HttpServlet {
     private UserService userService;
     private MessageService messageService;
+    private MenuService menuService;
+    private RoleService roleService;
 
     @Override
     public void init() throws ServletException {
         WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
         userService = context.getBean("userService", UserServiceImpl.class);
         messageService = context.getBean("messageService", MessageService.class);
+        menuService = context.getBean("menuService", MenuService.class);
+        roleService = context.getBean("roleService", RoleService.class);
     }
 
     @Override
@@ -45,22 +51,21 @@ public class LoginServlet extends HttpServlet {
         //MessageServiceImpl ms = new MessageServiceImpl();
         User u = userService.userCheckPwdService(uname, pwd);
         if (u != null) {//登陆成功
-            if (u.getIsRoot().equals("2")) {//普通用户登录
+            List<User> users = userService.getUSersService();
                 req.getSession().setAttribute("user", u);
-                req.getSession().setAttribute("username", u.getUname());
                 //获取当前用户所有留言
                 req.getSession().setAttribute("umessages", messageService.getUserMsgService(uname));
-                resp.sendRedirect("pages/user/userlogin.jsp");
-                return;
-            } else {//超级用户登陆
-                List<User> users = userService.getUSersService();
-                req.getSession().setAttribute("rootname", u.getUname());
                 req.getSession().setAttribute("users", users);
-                //获取当前用户所有留言
+            //获取所有留言
                 req.getSession().setAttribute("allmessages", messageService.getAllMsgService());
-                resp.sendRedirect("pages/root/rootlogin.jsp");
+            //获取相应菜单
+            req.getSession().setAttribute("menus", menuService.selMenuByIdService(u.getRoleId()));
+            //获取角色
+            req.getSession().setAttribute("roles", roleService.getRolesService());
+            //获取所有菜单
+            req.getSession().setAttribute("allmenus", menuService.getMenusService());
+            resp.sendRedirect("pages/user/userinfo.jsp");
                 return;
-            }
         } else {//用户名不存在或密码错误
             resp.getWriter().write("<script language='javascript'>alert('用户名或密码不正确！！！');window.location.href='pages/user/login.jsp';</script>");
             return;

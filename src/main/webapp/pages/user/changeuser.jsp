@@ -45,11 +45,19 @@
         <table border="0">
             <tr>
                 <td>用户名</td>
-                <td><input type="text" name="uname" value="${user.uname}"></td>
+                <td><input type="text" name="uname" value="${user.uname}" readonly></td>
             </tr>
             <tr>
                 <td>年龄</td>
                 <td><input type="text" name="age" value=" ${user.age}"></td>
+            </tr>
+            <tr>
+                <td>权&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;限：</td>
+                <td><select name="roleId">
+                    <c:forEach var="role" items="${roles}">
+                        <option value="${role.roleId}">${role.roleName}</option>
+                    </c:forEach>
+                </select><br/><br/></td>
             </tr>
             <tr>
                 <td>性别</td>
@@ -57,6 +65,7 @@
                     <input type="radio" name="sex" value="woman" ${user.sex eq "woman" ?'checked':''}>女
                 </td>
             </tr>
+
             <tr>
                 <td>爱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好:</td>
                 <td><input type="checkbox" name="fav" value="run" ${user.fav.contains("run") eq true?'checked':''}>跑步
@@ -82,7 +91,7 @@
             </tr>
             <tr>
                 <td><br/><br/><a href="javascript:document.form1.submit();" style="font-size: 20px">保存</a></td>
-                <td><br/><br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="pages/root/rootlogin.jsp"
+                <td><br/><br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="pages/user/manageuser.jsp"
                                                                      style="font-size: 20px">取消</a></td>
             </tr>
         </table>

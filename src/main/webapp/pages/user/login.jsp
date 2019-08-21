@@ -63,7 +63,7 @@
         </table>
         <br/>
         <input id="btn" type="submit" value="登录" style="width: 80px;height: 35px;">&emsp;&emsp;&emsp;&emsp;
-        <a id="regt" href="/pages/user/register2.jsp">点击注册账号</a>
+        <a id="regt" href="/getroles">点击注册账号</a>
     </form>
 
     <a href="/pages/uploaddownload/upload.jsp">上传文件</a>

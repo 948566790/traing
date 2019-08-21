@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 /**
- * 修改用户信息（仅超级用户可用）
+ * 修改用户信息
  */
 @WebServlet(name = "ChangeInfoServlet", urlPatterns = "/save")
 public class ChangeInfoServlet extends HttpServlet {
@@ -33,6 +33,7 @@ public class ChangeInfoServlet extends HttpServlet {
         String uname = req.getParameter("uname");
         String age = req.getParameter("age");
         String sex = req.getParameter("sex");
+        String roleId = req.getParameter("roleId");
         String tel = req.getParameter("tel");
         String email = req.getParameter("mail");
         String sign = req.getParameter("sign");
@@ -48,12 +49,12 @@ public class ChangeInfoServlet extends HttpServlet {
             u.setEmail(email);
             u.setFav(fav);
             u.setSign(sign);
+            u.setRoleId(roleId);
         }
-        System.out.println("save u -->" + u);
         //修改信息
         userService.userChangeService(u);
         req.getSession().setAttribute("users", userService.getUSersService());
-        resp.sendRedirect("pages/root/rootlogin.jsp");
+        resp.sendRedirect("pages/user/manageuser.jsp");
         return;
     }
 }

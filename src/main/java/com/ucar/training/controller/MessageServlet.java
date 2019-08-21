@@ -44,6 +44,6 @@ public class MessageServlet extends HttpServlet {
         req.getSession().setAttribute("allmessages", messageService.getAllMsgService());
 
         //刷新
-        resp.setHeader("refresh", "0.05;url=pages/user/userlogin.jsp");
+        resp.setHeader("refresh", "0.05;url=pages/user/usermsg.jsp");
     }
 }

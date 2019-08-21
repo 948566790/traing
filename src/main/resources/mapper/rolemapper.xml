@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucar.training.dao.RoleMapper">
+    <resultMap id="role" type="com.ucar.training.domain.Role">
+        <result property="roleId" column="role_id"/>
+        <result property="roleName" column="role_name"/>
+        <collection property="menus" select="com.ucar.training.dao.MenuMapper.selMenuById" column="role_id"/>
+    </resultMap>
+    <select id="getRoles" resultMap="role">
+        select *
+        from role
+    </select>
+
+    <select id="getRoleById" resultMap="role">
+        select *
+        from role
+        where role_id = #{arg0}
+    </select>
+
+    <select id="getRoleByName" resultMap="role">
+        select *
+        from role
+        where role_name = #{arg0}
+    </select>
+
+    <insert id="addRole">
+        insert into role(role_name)
+        values (#{roleName})
+    </insert>
+
+    <insert id="addRoleMenu">
+        insert into role_menu(role_id, menu_id)
+        values (#{arg0}, #{arg1})
+    </insert>
+
+    <delete id="delRole">
+        delete
+        from role
+        where role_id = #{arg0}
+    </delete>
+
+    <delete id="delRoleMenu">
+        delete
+        from role_menu
+        where role_id = #{arg0}
+    </delete>
+
+
+    <update id="changeRole">
+        update role
+        set role_name=#{roleName}
+        where role_id = #{roleId}
+    </update>
+
+
+</mapper>

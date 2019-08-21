@@ -23,4 +23,12 @@
     <bean id="messageService" class="com.ucar.training.service.impl.MessageServiceImpl">
         <property name="messageMapper" ref="messageMapper"></property>
     </bean>
+
+    <bean id="roleService" class="com.ucar.training.service.impl.RoleServiceImpl">
+        <property name="roleMapper" ref="roleMapper"></property>
+    </bean>
+
+    <bean id="menuService" class="com.ucar.training.service.impl.MenuServiceImpl">
+        <property name="menuMapper" ref="menuMapper"></property>
+    </bean>
 </beans>
