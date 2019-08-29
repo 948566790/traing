@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="url" value="jdbc:mysql://localhost:3306/javawebwork"></property>
-        <property name="username" value="root"></property>
-        <property name="password" value="123456"></property>
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/javawebwork"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
     </bean>
     <bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"></property>
-        <property name="mapperLocations" value="classpath:mapper/*mapper.xml"></property>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/*mapper.xml"/>
     </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.ucar.training.dao"></property>
-        <property name="sqlSessionFactoryBeanName" value="factory"></property>
-    </bean>
-    <bean id="userService" class="com.ucar.training.service.impl.UserServiceImpl">
-        <property name="userMapper" ref="userMapper"></property>
-    </bean>
-    <bean id="messageService" class="com.ucar.training.service.impl.MessageServiceImpl">
-        <property name="messageMapper" ref="messageMapper"></property>
+        <property name="basePackage" value="com.ucar.training.dao"/>
     </bean>
 
-    <bean id="roleService" class="com.ucar.training.service.impl.RoleServiceImpl">
-        <property name="roleMapper" ref="roleMapper"></property>
-    </bean>
+    <context:component-scan base-package="com.ucar.training.*"/>
 
-    <bean id="menuService" class="com.ucar.training.service.impl.MenuServiceImpl">
-        <property name="menuMapper" ref="menuMapper"></property>
-    </bean>
+    <bean id="timeAdvice" class="com.ucar.training.advice.aroundAdvice"/>
+    <aop:config>
+        <aop:aspect ref="timeAdvice">
+            <aop:pointcut id="serverpoint" expression="execution(* com.ucar.training.service.impl.*.*(..))"/>
+            <aop:around method="timeAdvice" pointcut-ref="serverpoint"/>
+        </aop:aspect>
+    </aop:config>
 </beans>

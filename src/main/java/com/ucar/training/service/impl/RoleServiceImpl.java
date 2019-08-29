@@ -4,19 +4,15 @@ import com.ucar.training.dao.RoleMapper;
 import com.ucar.training.domain.Menu;
 import com.ucar.training.domain.Role;
 import com.ucar.training.service.RoleService;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+@Service
 public class RoleServiceImpl implements RoleService {
+    @Resource
     private RoleMapper roleMapper;
-
-    public RoleMapper getRoleMapper() {
-        return roleMapper;
-    }
-
-    public void setRoleMapper(RoleMapper roleMapper) {
-        this.roleMapper = roleMapper;
-    }
 
     @Override
     public List<Role> getRolesService() {

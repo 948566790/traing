@@ -5,21 +5,16 @@ import com.ucar.training.domain.User;
 import com.ucar.training.dao.UserMapper;
 import com.ucar.training.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
+import javax.annotation.Resource;
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService {
-    //UserDaoImpl ud = new UserDaoImpl();
+    @Resource
     private UserMapper userMapper;
-
-    public UserMapper getUserMapper() {
-        return userMapper;
-    }
-
-    public void setUserMapper(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
 
     //用户注册
     @Override
@@ -48,7 +43,6 @@ public class UserServiceImpl implements UserService {
     public User getUserInfoService(String name) {
         return userMapper.getUserInfo(name);
     }
-
 
 
     //根据用户名删除用户

@@ -1,8 +1,10 @@
 package com.ucar.training.dao;
 
 import com.ucar.training.domain.Message;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 
 public interface MessageMapper {
     //保存用户留言

@@ -12,7 +12,7 @@
 <head>
     <style>
         body {
-            background-image: url(/img/bg1.jpg);
+            background-image: url(/bg1.jpg);
             background-repeat: no-repeat;
         }
 
@@ -25,16 +25,17 @@
             color: red;
         }
     </style>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
         function username() {
             var name = document.forms["register_form"]["uname"].value;
             var nameReg = /^[0-9A-Za-z]*$/;
             if (name == null || name == "") {
-                document.getElementById("tishi1").innerHTML = "此为必填"
+                $("#tishi1").html("此为必填");
             } else if (!nameReg.test(name)) {
-                document.getElementById("tishi1").innerHTML = "只能输入字母或者数字";
+                $("#tishi1").html("只能输入字母或者数字");
             } else if (name.length < 6 || name.length > 16) {
-                document.getElementById("tishi1").innerHTML = "长度要求在6到16以内";
+                $("#tishi1").html("长度要求在6到16以内");
             } else {
                 checkUserName(name);
             }
@@ -44,13 +45,13 @@
             var pwd = document.forms["register_form"]["pwd"].value;
             var reg = /^[0-9A-Za-z]*$/;
             if (pwd == null || pwd == "") {
-                document.getElementById("tishi2").innerHTML = "此为必填"
+                $("#tishi2").html("此为必填");
             } else if (!reg.test(pwd)) {
-                document.getElementById("tishi2").innerHTML = "只能输入字母或者数字";
+                $("#tishi2").html("只能输入字母或者数字");
             } else if (pwd.length < 6 || pwd.length > 18) {
-                document.getElementById("tishi2").innerHTML = "长度要求在6到18以内";
+                $("#tishi2").html("长度要求在6到18以内");
             } else {
-                document.getElementById("tishi2").innerHTML = "";
+                $("#tishi2").html("");
             }
             repeatpwd();
         }
@@ -59,20 +60,20 @@
             var pwd = document.forms["register_form"]["pwd"].value;
             var repwd = document.forms["register_form"]["repwd"].value;
             if (pwd != repwd) {
-                document.getElementById("tishi3").innerHTML = "密码不一致<";
+                $("#tishi3").html("密码不一致");
             } else {
-                document.getElementById("tishi3").innerHTML = "";
+                $("#tishi3").html("");
             }
         }
 
         function agetest() {
             var age = document.forms["register_form"]["age"].value;
             if (age == null || age == "") {
-                document.getElementById("tishi4").innerHTML = "此为必填";
+                $("#tishi4").html("此为必填");
             } else if (isNaN(age) || age > 150 || age < 1) {
-                document.getElementById("tishi4").innerHTML = "请输入1-150内的数字";
+                $("#tishi4").html("请输入1-150内的数字");
             } else {
-                document.getElementById("tishi4").innerHTML = "";
+                $("#tishi4").html("");
             }
         }
 
@@ -96,27 +97,24 @@
                 return false;
             }
         }
-
         function checkUserName(name) {
-            var xhr;
-            if (window.XMLHttpRequest) {
-                xhr = new XMLHttpRequest();
-            } else if (window.ActiveXObject) {
-                xhr = new ActiveXObject("Microsoft.XMLHttp");
-            }
-            xhr.open("POST", "/checkname", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("userName=" + name);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var ret = xhr.responseText;
-                    if (ret == "true") {
-                        document.getElementById("tishi1").innerHTML = "用户名已存在";
+            $.ajax({
+                url: "check",
+                data: {"uname": name},
+                type: "GET",
+                dataType: "html",
+                success: function (flag) {
+                    if (flag == "true") {
+                        $("#tishi1").html("用户名可以使用");
                     } else {
-                        document.getElementById("tishi1").innerHTML = "用户名可以使用";
+                        $("#tishi1").html("用户名已存在");
                     }
+                },
+                error: function () {
+                    alert("请求失败");
                 }
-            }
+            })
+
         }
 
 
@@ -129,7 +127,7 @@
 <a href="pages/user/login.jsp">返回登陆界面</a>
 <br/>
 <br/>
-<form name="register_form" action="/rs2" method="post" onsubmit="return submitit()">
+<form name="register_form" action="/register" method="post" onsubmit="return submitit()">
     <table>
         <tr>
             <td>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</td>
@@ -168,7 +166,7 @@
         </tr>
         <tr>
             <td>邮箱地址：</td>
-            <td><input type="email" name="mail" value=""><br/><br/></td>
+            <td><input type="email" name="email" value=""><br/><br/></td>
         </tr>
         <tr>
             <td>爱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好:</td>

@@ -14,7 +14,7 @@
 </head>
 <style type="text/css">
     body {
-        background: url("../../img/bg1.jpg");
+        background: url("/bg1.jpg");
     }
 
     .login {
@@ -50,7 +50,7 @@
 <body>
 <div class="login">
     <h2>用户登录</h2>
-    <form action="/login2" method="post">
+    <form action="/login" method="post">
         <table>
             <tr>
                 <td>用户名</td>
@@ -63,7 +63,7 @@
         </table>
         <br/>
         <input id="btn" type="submit" value="登录" style="width: 80px;height: 35px;">&emsp;&emsp;&emsp;&emsp;
-        <a id="regt" href="/getroles">点击注册账号</a>
+        <a id="regt" href="/getroles2">点击注册账号</a>
     </form>
 
     <a href="/pages/uploaddownload/upload.jsp">上传文件</a>

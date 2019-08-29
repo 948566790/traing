@@ -11,7 +11,7 @@
 <head>
     <style>
         body {
-            background-image: url(/img/bg1.jpg);
+            background-image: url(/bg1.jpg);
             background-repeat: no-repeat;
         }
 

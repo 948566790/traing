@@ -63,7 +63,7 @@
     <div class="nav-links">
         <p style="font-size: 20px">用户${username}登陆成功</p>
         <c:forEach var="menu" items="${menus}">
-            <a href="${menu.url}" class="link">${menu.menuName}</a>
+            <a href="/${menu.url}/${username}" class="link">${menu.menuName}</a>
         </c:forEach>
     </div>
 </nav>
@@ -82,23 +82,23 @@
                 <td>${menu.menuName}</td>
                 <td>${menu.url}</td>
                 <td><input type="button" name="del" value="删除此菜单"
-                           onclick="javascrtpt:window.location.href='/delmenu?menuid=${menu.menuId}'">
+                           onclick="javascrtpt:window.location.href='/delmenu/${menu.menuId}'">
                 </td>
                 <td><input type="button" name="del" value="修改菜单"
-                           onclick="javascrtpt:window.location.href='/menuinfo?menuid=${menu.menuId}'">
+                           onclick="javascrtpt:window.location.href='/menuinfo/${menu.menuId}'">
                 </td>
             </tr>
         </c:forEach>
         <tr>
             <td><input type="button" name="del" value="新增菜单"
-                       onclick="javascrtpt:window.location.href='addmenu.jsp'">
+                       onclick="javascrtpt:window.location.href='/pages/user/addmenu.jsp'">
             </td>
         </tr>
     </table>
     <br/>
     <br/>
 </div>
-<a class="ul" href="login.jsp">超级用户注销</a>
+<a class="ul" href="/pages/user/login.jsp">超级用户注销</a>
 <script>
     var menuBtn = document.querySelector('.menu-btn');
     var nav = document.querySelector('nav');

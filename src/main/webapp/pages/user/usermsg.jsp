@@ -83,7 +83,7 @@
     <div class="nav-links">
         <p style="font-size: 20px">用户${username}登陆成功</p>
         <c:forEach var="menu" items="${menus}">
-            <a href="${menu.url}" class="link">${menu.menuName}</a>
+            <a href="/${menu.url}/${username}" class="link">${menu.menuName}</a>
         </c:forEach>
     </div>
 </nav>
@@ -91,15 +91,15 @@
 <div class="message">
     <h1>留言板</h1>
     <h4 style="margin-left: 200px">欢迎留言</h4>
-    <form action="mg" method="get">
-        <textarea id="text" name="message" style="font-size: 15px" required>请留言。。。。。</textarea>
+    <form action="/addmsg" method="get">
+        <textarea id="text" name="msg" style="font-size: 15px" required>请留言。。。。。</textarea>
         <!--input type="submit" id="btn" value="点击留言" style="width: 100px;height: 50px"-->
         <input type="button" id="btn" name="putmsg" value="点击留言" style="width: 100px;height: 50px"
-               onclick="javascrtpt:window.location.href='/mg?uname=${user.uname}&message='+document.getElementById('text').value"> </td>
+               onclick="javascrtpt:window.location.href='/addmsg?uname=${username}&msg='+document.getElementById('text').value"> </td>
     </form>
 
 </div>
-<a class="ul" href="login.jsp">用户注销</a>
+<a class="ul" href="/pages/user/login.jsp">用户注销</a>
 <script>
     var menuBtn = document.querySelector('.menu-btn');
     var nav = document.querySelector('nav');

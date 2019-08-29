@@ -3,12 +3,17 @@ package com.ucar.training.service.impl;
 import com.ucar.training.dao.MessageMapper;
 import com.ucar.training.domain.Message;
 import com.ucar.training.service.MessageService;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+
+@Service
 public class MessageServiceImpl implements MessageService {
-    //MessageDao md = new MessageDaoImpl();
+    @Resource
     MessageMapper messageMapper;
+
     @Override
     public void saveMsgService(String name, String msg) {
         messageMapper.saveMsg(name, msg);
@@ -30,7 +35,4 @@ public class MessageServiceImpl implements MessageService {
         return messageMapper.getUserMsg(name);
     }
 
-    public void setMessageMapper(MessageMapper messageMapper) {
-        this.messageMapper = messageMapper;
-    }
 }

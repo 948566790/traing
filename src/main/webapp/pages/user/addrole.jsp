@@ -4,7 +4,7 @@
 <%@ page import="com.ucar.training.domain.Role" %>
 <style>
     body {
-        background: url("../../img/bg1.jpg");
+        background: url("../../bg1.jpg");
     }
 
     h1 {
@@ -46,7 +46,7 @@
         <table border="0">
             <tr>
                 <td nowrap="nowrap">角色名</td>
-                <td><input type="text" name="rolename"></td>
+                <td><input type="text" name="roleName"></td>
             </tr>
             <tr>
                 <td nowrap="nowrap">角色权限 &emsp;</td>
@@ -60,7 +60,7 @@
             <tr>
                 <td><br/><br/><br/><br/><a href="javascript:document.form1.submit();" style="font-size: 20px">保存</a>
                 </td>
-                <td><br/><br/><br/><br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="managerole.jsp"
+                <td><br/><br/><br/><br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="/managerole/${username}"
                                                                                style="font-size: 20px">取消</a></td>
             </tr>
         </table>

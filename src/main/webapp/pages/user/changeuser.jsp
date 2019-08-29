@@ -3,7 +3,7 @@
 <%@ page import="com.ucar.training.domain.User" %>
 <style>
     body {
-        background: url("../../img/bg1.jpg");
+        background: url("../../bg1.jpg");
     }
 
     h1 {
@@ -40,7 +40,7 @@
 <body>
 <h1>您现在修改的用户为----${user.uname}</h1>
 <div class="info">
-    <form action="/save" method="get" name="form1">
+    <form action="/upduser" method="get" name="form1">
         <p style="font-size: 25px">个人信息</p>
         <table border="0">
             <tr>
@@ -83,7 +83,7 @@
             </tr>
             <tr>
                 <td>邮箱</td>
-                <td><input type="email" name="mail" value="${user.email}"></td>
+                <td><input type="email" name="email" value="${user.email}"></td>
             </tr>
             <tr>
                 <td>个性签名</td>
@@ -91,7 +91,7 @@
             </tr>
             <tr>
                 <td><br/><br/><a href="javascript:document.form1.submit();" style="font-size: 20px">保存</a></td>
-                <td><br/><br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="pages/user/manageuser.jsp"
+                <td><br/><br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="/manageuser/${username}"
                                                                      style="font-size: 20px">取消</a></td>
             </tr>
         </table>

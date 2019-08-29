@@ -64,7 +64,7 @@
     <div class="nav-links">
         <p style="font-size: 20px">用户${username}登陆成功</p>
         <c:forEach var="menu" items="${menus}">
-            <a href="${menu.url}" class="link">${menu.menuName}</a>
+            <a href="/${menu.url}/${username}" class="link">${menu.menuName}</a>
         </c:forEach>
     </div>
 </nav>
@@ -87,23 +87,23 @@
                     </c:forEach>
                 </td>
                 <td><input type="button" name="del" value="删除此角色"
-                           onclick="javascrtpt:window.location.href='/delrole?id=${role.roleId}'">
+                           onclick="javascrtpt:window.location.href='/delrole/${role.roleId}'">
                 </td>
                 <td><input type="button" name="del" value="修改角色"
-                           onclick="javascrtpt:window.location.href='/roleinfo?roleId=${role.roleId}'">
+                           onclick="javascrtpt:window.location.href='/roleinfo/${role.roleId}'">
                 </td>
             </tr>
         </c:forEach>
         <tr>
             <td><input type="button" name="del" value="新增角色"
-                       onclick="javascrtpt:window.location.href='addrole.jsp'">
+                       onclick="javascrtpt:window.location.href='/befaddrole'">
             </td>
         </tr>
     </table>
     <br/>
     <br/>
 </div>
-<a class="ul" href="login.jsp">超级用户注销</a>
+<a class="ul" href="/pages/user/login.jsp">超级用户注销</a>
 <script>
     var menuBtn = document.querySelector('.menu-btn');
     var nav = document.querySelector('nav');

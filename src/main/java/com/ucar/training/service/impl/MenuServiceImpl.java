@@ -3,20 +3,15 @@ package com.ucar.training.service.impl;
 import com.ucar.training.dao.MenuMapper;
 import com.ucar.training.domain.Menu;
 import com.ucar.training.service.MenuService;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+@Service
 public class MenuServiceImpl implements MenuService {
+    @Resource
     private MenuMapper menuMapper;
-
-    public MenuMapper getMenuMapper() {
-        return menuMapper;
-    }
-
-    public void setMenuMapper(MenuMapper menuMapper) {
-        this.menuMapper = menuMapper;
-    }
-
 
     @Override
     public List<Menu> selMenuByIdService(String id) {

@@ -5,7 +5,7 @@
 <%@ page import="com.ucar.training.domain.Menu" %>
 <style>
     body {
-        background: url("../../img/bg1.jpg");
+        background: url("../../bg1.jpg");
     }
 
     h1 {
@@ -47,7 +47,7 @@
         <table border="0">
             <tr>
                 <td nowrap="nowrap">菜单名称</td>
-                <td><input type="text" name="menuname"></td>
+                <td><input type="text" name="menuName"></td>
             </tr>
             <tr>
                 <td nowrap="nowrap">URL &emsp;</td>
@@ -56,7 +56,7 @@
             <tr>
                 <td><br/><br/><br/><br/><a href="javascript:document.form1.submit();" style="font-size: 20px">保存</a>
                 </td>
-                <td><br/><br/><br/><br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="managemenu.jsp"
+                <td><br/><br/><br/><br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="/managemenu/${username}"
                                                                                style="font-size: 20px">取消</a></td>
             </tr>
         </table>

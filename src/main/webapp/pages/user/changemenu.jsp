@@ -3,7 +3,7 @@
 <%@ page import="com.ucar.training.domain.User" %>
 <style>
     body {
-        background: url("../../img/bg1.jpg");
+        background: url("../../bg1.jpg");
     }
 
     h1 {
@@ -40,16 +40,16 @@
 <body>
 <h1>您现在修改的菜单为----${menu.menuName}</h1>
 <div class="info">
-    <form action="/savemenu" method="get" name="form1">
+    <form action="/updmenu" method="get" name="form1">
         <p style="font-size: 25px">菜单信息</p>
         <table border="0">
             <tr>
                 <td nowrap="nowrap">菜单ID</td>
-                <td><input type="text" name="menuid" value="${menu.menuId}" readonly></td>
+                <td><input type="text" name="menuId" value="${menu.menuId}" readonly></td>
             </tr>
             <tr>
                 <td nowrap="nowrap">菜单名称</td>
-                <td><input type="text" name="menuname" value="${menu.menuName}"></td>
+                <td><input type="text" name="menuName" value="${menu.menuName}"></td>
             </tr>
             <tr>
                 <td nowrap="nowrap">URL &emsp;</td>
@@ -57,7 +57,7 @@
             </tr>
             <tr>
                 <td><br/><br/><a href="javascript:document.form1.submit();" style="font-size: 20px">保存</a></td>
-                <td><br/><br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="pages/user/managemenu.jsp"
+                <td><br/><br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="/managemenu/${username}"
                                                                      style="font-size: 20px">取消</a></td>
             </tr>
         </table>

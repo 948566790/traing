@@ -1,6 +1,7 @@
 package com.ucar.training.dao;
 
 import com.ucar.training.domain.Menu;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
