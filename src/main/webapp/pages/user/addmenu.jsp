@@ -5,7 +5,7 @@
 <%@ page import="com.ucar.training.domain.Menu" %>
 <style>
     body {
-        background: url("../../bg1.jpg");
+        background: url("../../img/bg1.jpg");
     }
 
     h1 {

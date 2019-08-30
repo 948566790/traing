@@ -21,7 +21,6 @@ public class MenuController {
 
     @Resource
     private UserService userServiceImpl;
-
     @RequestMapping("managemenu/{uname}")
     public String manageMenu(@PathVariable String uname, HttpServletRequest request) {
         User user = userServiceImpl.getUserInfoService(uname);

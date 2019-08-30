@@ -12,7 +12,7 @@
 <head>
     <style>
         body {
-            background-image: url(/bg1.jpg);
+            background-image: url(/img/bg1.jpg);
             background-repeat: no-repeat;
         }
 
@@ -25,7 +25,7 @@
             color: red;
         }
     </style>
-    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/jQuery/jquery-3.4.1.js"></script>
     <script>
         function username() {
             var name = document.forms["register_form"]["uname"].value;
