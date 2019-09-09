@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ming.springbootdemo.dao.ShoppingcartMapper">
+    <resultMap id="cartItem" type="com.ming.springbootdemo.pojo.Shoppingcart">
+        <result property="goodsId" column="goodsId"/>
+        <association property="goods" select="com.ming.springbootdemo.dao.GoodsMapper.selById" column="goodsId"/>
+    </resultMap>
+
+    <insert id="addGoodsToCart">
+        insert into shoppingcart(goodsId, uid)
+        values (#{goodsId}, #{uid})
+    </insert>
+
+    <insert id="addGoodsToCartBySid">
+        insert into shoppingcart(goodsId, sessionId)
+        values (#{goodsId}, #{sessionId})
+    </insert>
+
+    <update id="updCart">
+        update shoppingcart
+        set count=#{count}
+        where goodsId = #{goodsId}
+          and uid = #{uid}
+    </update>
+
+    <update id="updCartBySid">
+        update shoppingcart
+        set count=#{count}
+        where goodsId = #{goodsId}
+          and sessionId = #{sessionId}
+    </update>
+
+    <update id="updCartUid">
+        update shoppingcart
+        set uid=#{uid}
+        where sessionId = #{sessionId}
+    </update>
+
+    <update id="updCartUidByGidSid">
+        update shoppingcart
+        set uid=#{uid}
+        where sessionId = #{sessionId}
+          and goodsId = #{goodsId}
+    </update>
+
+    <select id="selAll" resultMap="cartItem">
+        select *
+        from shoppingcart
+    </select>
+
+    <select id="selCartById" resultMap="cartItem">
+        select *
+        from shoppingcart
+        where goodsId = #{goodsId}
+          and uid = #{uid}
+    </select>
+
+    <select id="selCartByUid" resultMap="cartItem">
+        select *
+        from shoppingcart
+        where uid = #{uid}
+    </select>
+
+    <select id="selCartBySidGid" resultMap="cartItem">
+        select *
+        from shoppingcart
+        where goodsId = #{goodsId}
+          and sessionId = #{sessionId}
+    </select>
+
+    <select id="selCartBySid" resultMap="cartItem">
+        select *
+        from shoppingcart
+        where sessionId = #{sessionId}
+    </select>
+
+    <delete id="delAll">
+        delete
+        from shoppingcart
+        where uid = #{uid}
+    </delete>
+
+    <delete id="delAllBySid">
+        delete
+        from shoppingcart
+        where sessionId = #{sessionId}
+    </delete>
+
+    <delete id="delItem">
+        delete
+        from shoppingcart
+        where goodsId = #{goodsId}
+          and uid = #{uid}
+    </delete>
+
+    <delete id="delItemBySid">
+        delete
+        from shoppingcart
+        where goodsId = #{goodsId}
+          and sessionId = #{sessionId}
+    </delete>
+
+</mapper>

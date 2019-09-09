@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ming.springbootdemo.dao.GoodsMapper">
+    <select id="selById" resultType="com.ming.springbootdemo.pojo.Goods">
+        select *
+        from goods
+        where goodsId = #{id}
+    </select>
+
+    <select id="selByName" resultType="com.ming.springbootdemo.pojo.Goods">
+        select *
+        from goods
+        where goodsName = #{name}
+    </select>
+
+    <select id="selAllGoods" resultType="com.ming.springbootdemo.pojo.Goods">
+        select *
+        from goods
+    </select>
+
+    <update id="reduceStock">
+        update goods
+        set stock = stock - #{reduce}
+        where goodsId = #{goodsId}
+    </update>
+
+    <select id="search" resultType="com.ming.springbootdemo.pojo.Goods">
+        select g.goodsId, g.goodsName, g.stock, g.price
+        from goods as g,
+             afloor as a,
+             bfloor as b
+        where (g.Bid = b.Bid and b.Aid = a.Aid)
+          and (Aname = #{word} or Bname = #{word} or goodsName = #{word})
+    </select>
+</mapper>
