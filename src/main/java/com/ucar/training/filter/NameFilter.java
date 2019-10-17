@@ -7,10 +7,12 @@ import java.io.IOException;
 public class NameFilter implements Filter {
     private String[] blacklist;
 
+    @Override
     public void destroy() {
 
     }
 
+    @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=UTF-8");
@@ -33,6 +35,7 @@ public class NameFilter implements Filter {
 
     }
 
+    @Override
     public void init(FilterConfig config) throws ServletException {
         this.blacklist = config.getInitParameter("blacklist").split(",");
     }

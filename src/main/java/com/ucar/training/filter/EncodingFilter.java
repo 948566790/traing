@@ -7,15 +7,18 @@ import java.io.IOException;
 public class EncodingFilter implements Filter {
     private String encode;
 
+    @Override
     public void destroy() {
     }
 
+    @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         resp.setCharacterEncoding(encode);
         req.setCharacterEncoding(encode);
         chain.doFilter(req, resp);
     }
 
+    @Override
     public void init(FilterConfig config) throws ServletException {
         encode = config.getInitParameter("encode");
     }
