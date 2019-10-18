@@ -29,7 +29,7 @@ public class AjaxServlet extends HttpServlet {
         WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
         userService = context.getBean("userService", UserService.class);
     }
-
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置编码
         request.setCharacterEncoding("utf-8");
@@ -51,7 +51,7 @@ public class AjaxServlet extends HttpServlet {
         }
 
     }
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
