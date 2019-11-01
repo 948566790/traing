@@ -2,10 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:jsm="http://www.springframework.org/schema/jms"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd">
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="url" value="jdbc:mysql://localhost:3306/javawebwork"/>
@@ -30,4 +30,36 @@
             <aop:around method="timeAdvice" pointcut-ref="serverpoint"/>
         </aop:aspect>
     </aop:config>
+    <!--activemq提供的连接工厂，创建activemq连接对象的真正的工厂-->
+    <bean class="org.apache.activemq.ActiveMQConnectionFactory" id="activeMQConnectionFactory">
+        <property name="brokerURL" value="tcp://192.168.74.130:61616"/>
+        <property name="userName" value="admin"/>
+        <property name="password" value="admin"/>
+    </bean>
+
+    <!--spring提供的jms连接工厂，加工原工厂，方便在spring中使用-->
+    <bean class="org.springframework.jms.connection.SingleConnectionFactory" id="connectionFactory">
+        <property name="targetConnectionFactory" ref="activeMQConnectionFactory"/>
+    </bean>
+
+    <!--队列目的地-->
+    <bean class="org.apache.activemq.command.ActiveMQQueue" id="activeMQQueue">
+        <constructor-arg value="queue01"/>
+    </bean>
+    <!--主题目的地-->
+    <bean class="org.apache.activemq.command.ActiveMQTopic" id="activeMQTopic">
+        <constructor-arg value="topic01"/>
+    </bean>
+    <!--jms模板对象，用于发送消息-->
+    <bean class="org.springframework.jms.core.JmsTemplate" id="jmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+    </bean>
+
+    <!--消息监听器 ，用于监听发送到队列中的消息，充当消费者。以下主要参数作用，
+            acknowledge：消费者接收消息后的确认机制，auto代表自动确认
+            connection-factory：连接工厂，这里指的使spring提供提供的连接工厂
+            -->
+    <jsm:listener-container acknowledge="auto" connection-factory="connectionFactory" container-type="default" destination-type="queue">
+        <jsm:listener destination="queue01" ref="msgListener"/>
+    </jsm:listener-container>
 </beans>

@@ -7,14 +7,18 @@ import com.ucar.training.service.MenuService;
 import com.ucar.training.service.MessageService;
 import com.ucar.training.service.RoleService;
 import com.ucar.training.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.annotation.Resource;
+import javax.jms.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -89,5 +93,24 @@ public class UserController {
     public String delUser(@PathVariable String uname, HttpServletRequest request) {
         userServiceImpl.userDelService(uname);
         return "forward:/manageuser/" + request.getSession().getAttribute("username");
+    }
+
+    @Autowired
+    private JmsTemplate jmsTemplate;
+
+    @Resource(name = "activeMQQueue")
+    private Destination destination;
+
+
+    @RequestMapping("testQueue")
+    public void testQueue(){
+        jmsTemplate.send(destination, new MessageCreator() {
+            @Override
+            public Message createMessage(Session session) throws JMSException {
+                TextMessage message = session.createTextMessage("测试Message");
+                return message;
+            }
+        });
+        System.out.println("发送成功！！！！！");
     }
 }
